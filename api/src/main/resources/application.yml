@@ -1,0 +1,12 @@
+server:
+  port: 20000
+
+holland:
+  filesystem:
+    disk:
+      local:
+        base: output
+      remote:
+        host: 165.154.161.46
+        username: ubuntu
+        password: wsZhn001

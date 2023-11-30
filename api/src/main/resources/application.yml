@@ -1,12 +1,14 @@
 server:
   port: 20000
 
+spring:
+  mvc:
+    static-path-pattern: /resources/**
+  web:
+    resources:
+      static-locations: /resources/**
+  freemarker:
+    template-loader-path: classpath:/templates/
+    suffix: .ftl
+
 holland:
-  filesystem:
-    disk:
-      local:
-        base: output
-      remote:
-        host: 165.154.161.46
-        username: ubuntu
-        password: wsZhn001

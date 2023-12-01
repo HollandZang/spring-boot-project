@@ -5,10 +5,13 @@
     <title>flowchart</title>
 </head>
 <body style="background-color: #2d313a">
-<script src="/resources/templates/js/go.js"></script>
+<script src="../js/go.js"></script>
 <div id="allSampleContent" class="p-4 w-full">
     <script id="code">
         var data = ${data}
+        var id = data.id ?? null
+        var req_url_info = '${req_url_info}'
+        var req_url_saveOrUpdate = '${req_url_saveOrUpdate}'
 
         function init() {
             document.getElementById("mySavedModel").value = JSON.stringify(data, null, 2);
@@ -294,13 +297,33 @@
         function save() {
             const s = myDiagram.model.toJson()
             data = JSON.parse(s);
+            data.id = id;
             document.getElementById("mySavedModel").value = JSON.stringify(data, null, 2);
             myDiagram.isModified = false;
+
+            // 持久化
+            fetch(req_url_saveOrUpdate, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(data)
+            })
+                .then(response => response.json())
+                .then(response => {
+                    const s = JSON.stringify(response, null, 2);
+                    document.getElementById("mySavedModel").value = s;
+                    data = response;
+                    id = data.id ?? null;
+                    myDiagram.model = go.Model.fromJson(s);
+                })
+                .catch(error => console.error('Error:', error));
         }
 
         function load() {
             const s = document.getElementById("mySavedModel").value
             data = JSON.parse(s)
+            id = data.id ?? null;
             myDiagram.model = go.Model.fromJson(s);
         }
 

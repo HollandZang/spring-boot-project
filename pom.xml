@@ -21,7 +21,7 @@
         <module>infrastructure-filesystem-minio</module>
         <module>infrastructure-filesystem-disk</module>
         <module>infrastructure-kit</module>
-        <module>infrastructure-workflow</module>
+        <module>infrastructure-flowchart</module>
     </modules>
 
     <properties>
@@ -97,7 +97,7 @@
             </dependency>
             <dependency>
                 <groupId>com.holland</groupId>
-                <artifactId>infrastructure-workflow</artifactId>
+                <artifactId>infrastructure-flowchart</artifactId>
                 <version>0.0.1</version>
             </dependency>
         </dependencies>

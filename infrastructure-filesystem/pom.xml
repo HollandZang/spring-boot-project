@@ -10,7 +10,6 @@
     </parent>
 
     <artifactId>infrastructure-filesystem</artifactId>
-    <packaging>pom</packaging>
 
     <properties>
         <maven.compiler.source>8</maven.compiler.source>

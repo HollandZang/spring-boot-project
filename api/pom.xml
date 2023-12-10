@@ -32,5 +32,9 @@
             <artifactId>infrastructure-flowchart</artifactId>
         </dependency>
 
+        <dependency>
+            <groupId>com.holland</groupId>
+            <artifactId>infrastructure-kit</artifactId>
+        </dependency>
     </dependencies>
 </project>

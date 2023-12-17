@@ -9,7 +9,7 @@ import java.lang.annotation.*;
 @Target({ElementType.FIELD, ElementType.PARAMETER})
 @Retention(RetentionPolicy.RUNTIME)
 public @interface IsJsonArr {
-    String message() default "not a JSON ARRAY，your value: '${validatedValue}'";
+    String message() default "不是合法的JSON ARRAY，您输入的是: '${validatedValue}'";
 
     Class<?>[] groups() default {};
 

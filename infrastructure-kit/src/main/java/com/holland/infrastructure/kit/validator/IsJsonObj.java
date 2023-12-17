@@ -9,7 +9,7 @@ import java.lang.annotation.*;
 @Target({ElementType.FIELD, ElementType.PARAMETER})
 @Retention(RetentionPolicy.RUNTIME)
 public @interface IsJsonObj {
-    String message() default "not a JSON OBJECT，your value: '${validatedValue}'";
+    String message() default "不是合法的JSON OBJECT，您输入的是: '${validatedValue}'";
 
     Class<?>[] groups() default {};
 

@@ -7,14 +7,11 @@ import cn.hutool.extra.ssh.JschUtil;
 import cn.hutool.extra.ssh.Sftp;
 import com.alibaba.fastjson2.JSON;
 import com.holland.infrastructure.filesystem.FileDTO;
-import com.holland.infrastructure.kit.kit.DateKit;
-import com.holland.infrastructure.kit.kit.FileKit;
-import com.holland.infrastructure.kit.exception.AssertKit;
 import com.holland.infrastructure.kit.exception.BizException;
 import com.holland.infrastructure.kit.exception.SimpleException;
+import com.holland.infrastructure.kit.kit.DateKit;
+import com.holland.infrastructure.kit.kit.FileKit;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.lang.NonNull;
-import org.springframework.lang.Nullable;
 import org.springframework.stereotype.Repository;
 import org.springframework.util.CollectionUtils;
 import org.springframework.web.multipart.MultipartFile;
@@ -35,9 +32,7 @@ public class RemoteDiskFileServiceImpl implements DiskFileService {
     private RemoteDiskProperties properties;
 
     @Override
-    @NonNull
-    public FileDTO upload(@NonNull InputStream inputStream, @Nullable String specifyDir, @NonNull String specifyFileName, @Nullable Map<String, String> meta) {
-        AssertKit.isNotEmpty(specifyFileName, "文件名不能为空");
+    public FileDTO upload(InputStream inputStream, String specifyDir, String specifyFileName, Map<String, String> meta) {
         if (StrUtil.isEmpty(specifyDir))
             specifyDir = properties.getBase() + File.separatorChar + properties.getCommDir() + File.separator + DateKit.format(LocalDateTime.now(), DateKit.DTF_YYYYMMDDHH);
 
@@ -66,8 +61,7 @@ public class RemoteDiskFileServiceImpl implements DiskFileService {
     }
 
     @Override
-    @NonNull
-    public FileDTO upload(@NonNull MultipartFile file, @Nullable String specifyDir, @Nullable String specifyFileName, @Nullable Map<String, String> meta) {
+    public FileDTO upload(MultipartFile file, String specifyDir, String specifyFileName, Map<String, String> meta) {
         final String originalFilename = file.getOriginalFilename();
 
         if (StrUtil.isEmpty(specifyFileName))
@@ -87,14 +81,14 @@ public class RemoteDiskFileServiceImpl implements DiskFileService {
     }
 
     @Override
-    public void delete(@NonNull String path) {
+    public void delete(String path) {
         try (Sftp sftp = JschUtil.createSftp(properties.getHost(), properties.getPort(), properties.getUsername(), properties.getPassword())) {
             sftp.delFile(path);
         }
     }
 
     @Override
-    public void delete(@NonNull FileDTO fileDTO) {
+    public void delete(FileDTO fileDTO) {
         final String relative = fileDTO.getRelative();
         if (StrUtil.isNotEmpty(relative)) {
             delete(relative);
@@ -109,14 +103,12 @@ public class RemoteDiskFileServiceImpl implements DiskFileService {
     }
 
     @Override
-    @NonNull
-    public String preview(@NonNull String path) {
+    public String preview(String path) {
         return path;
     }
 
     @Override
-    @NonNull
-    public byte[] downloadFile(@NonNull String path) {
+    public byte[] downloadFile(String path) {
         try (Sftp sftp = JschUtil.createSftp(properties.getHost(), properties.getPort(), properties.getUsername(), properties.getPassword());
              ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream()
         ) {
@@ -128,8 +120,7 @@ public class RemoteDiskFileServiceImpl implements DiskFileService {
     }
 
     @Override
-    @NonNull
-    public byte[] downloadFile(@NonNull FileDTO fileDTO) {
+    public byte[] downloadFile(FileDTO fileDTO) {
         final String relative = fileDTO.getRelative();
         if (StrUtil.isNotEmpty(relative)) {
             return downloadFile(relative);

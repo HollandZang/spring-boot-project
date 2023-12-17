@@ -26,12 +26,11 @@
             <groupId>com.alibaba.fastjson2</groupId>
             <artifactId>fastjson2</artifactId>
         </dependency>
-
         <dependency>
-            <groupId>com.holland</groupId>
-            <artifactId>infrastructure-flowchart</artifactId>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <scope>provided</scope>
         </dependency>
-
         <dependency>
             <groupId>com.holland</groupId>
             <artifactId>infrastructure-kit</artifactId>

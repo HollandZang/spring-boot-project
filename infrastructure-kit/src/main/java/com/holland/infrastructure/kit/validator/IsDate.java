@@ -17,7 +17,7 @@ public @interface IsDate {
      */
     Dates[] value();
 
-    String message() default "not a legal date: '{value}'，your value: '{inputVal}'";
+    String message() default "不是合法的日期，需要: '{value}'，您输入的是: '{inputVal}'";
 
     Class<?>[] groups() default {};
 

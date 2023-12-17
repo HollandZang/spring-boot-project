@@ -1,6 +1,7 @@
-package com.holland.infrastructure.kit.exception;
+package com.holland.infrastructure.kit.kit;
 
 import cn.hutool.core.util.StrUtil;
+import com.holland.infrastructure.kit.exception.SimpleException;
 
 import java.lang.reflect.Array;
 import java.util.Collection;

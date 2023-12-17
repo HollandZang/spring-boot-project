@@ -4,6 +4,9 @@ import java.time.format.DateTimeFormatter;
 import java.time.temporal.Temporal;
 
 public class DateKit {
+    private DateKit() {
+    }
+
     public static final String YYYY = "yyyy";
     public static final String YYYY_MM = "yyyy-MM";
     public static final String YYYY_MM_DD = "yyyy-MM-dd";

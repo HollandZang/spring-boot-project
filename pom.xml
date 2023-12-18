@@ -17,6 +17,7 @@
 
     <modules>
         <module>api</module>
+        <module>infrastructure-cache</module>
         <module>infrastructure-filesystem</module>
         <module>infrastructure-filesystem-minio</module>
         <module>infrastructure-filesystem-disk</module>
@@ -77,7 +78,7 @@
 
             <dependency>
                 <groupId>com.holland</groupId>
-                <artifactId>infrastructure-kit</artifactId>
+                <artifactId>infrastructure-cache</artifactId>
                 <version>0.0.1</version>
             </dependency>
             <dependency>
@@ -100,8 +101,21 @@
                 <artifactId>infrastructure-flowchart</artifactId>
                 <version>0.0.1</version>
             </dependency>
+            <dependency>
+                <groupId>com.holland</groupId>
+                <artifactId>infrastructure-kit</artifactId>
+                <version>0.0.1</version>
+            </dependency>
         </dependencies>
     </dependencyManagement>
+
+    <dependencies>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-configuration-processor</artifactId>
+            <optional>true</optional>
+        </dependency>
+    </dependencies>
 
     <repositories>
         <repository>
@@ -113,25 +127,5 @@
             </releases>
         </repository>
     </repositories>
-
-    <build>
-        <plugins>
-            <plugin>
-                <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-maven-plugin</artifactId>
-                <configuration>
-                    <image>
-                        <builder>paketobuildpacks/builder-jammy-base:latest</builder>
-                    </image>
-                    <excludes>
-                        <exclude>
-                            <groupId>org.projectlombok</groupId>
-                            <artifactId>lombok</artifactId>
-                        </exclude>
-                    </excludes>
-                </configuration>
-            </plugin>
-        </plugins>
-    </build>
 
 </project>

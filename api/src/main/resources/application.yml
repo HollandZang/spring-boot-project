@@ -1,2 +1,21 @@
 server:
   port: 20000
+
+logging:
+  level:
+    holland.cache.value_from: debug
+
+holland:
+  caches:
+    sort-list:
+      - ttl: 60
+        caffeine:
+          initial-capacity: 16
+          maximum-size: 512
+      - ttl: 300
+        redis:
+          transaction-aware: true
+          cache-key-prefix: "cache"
+          spec-keys:
+            - key-name: status
+              ttl: 120

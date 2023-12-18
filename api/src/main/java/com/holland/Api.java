@@ -27,4 +27,17 @@ public class Api {
         return date;
     }
 
+    @Resource
+    private TestService1 testService1;
+
+    @RequestMapping("contextLoads")
+    void contextLoads() throws InterruptedException {
+        System.out.printf("第一次调用，使用的应该是 计算：%s\n\n", testService1.test());
+
+        System.out.printf("3秒内，使用的应该是 caffeine：%s\n\n", testService1.test());
+        Thread.sleep(3000);
+        System.out.printf("3秒后，使用的应该是 redis：%s\n\n", testService1.test());
+        Thread.sleep(3000);
+        System.out.printf("6秒后，使用的应该是 计算：%s\n\n", testService1.test());
+    }
 }

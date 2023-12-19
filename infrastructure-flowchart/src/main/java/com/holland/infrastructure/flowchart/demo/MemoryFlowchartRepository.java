@@ -1,5 +1,6 @@
-package com.holland.infrastructure.flowchart;
+package com.holland.infrastructure.flowchart.demo;
 
+import com.holland.infrastructure.flowchart.FlowchartRepository;
 import com.holland.infrastructure.flowchart.domain.Flowchart;
 import org.springframework.lang.NonNull;
 import org.springframework.util.StringUtils;

@@ -39,6 +39,10 @@
             <groupId>com.holland</groupId>
             <artifactId>infrastructure-cache</artifactId>
         </dependency>
+        <dependency>
+            <groupId>com.holland</groupId>
+            <artifactId>infrastructure-flowchart</artifactId>
+        </dependency>
     </dependencies>
 
     <build>

@@ -42,16 +42,16 @@
                 }
             });
 
-            // helper definitions for node templates
+            // helper definitions for flowNode templates
             function nodeStyle() {
                 return [
-                    // The Node.location comes from the "loc" property of the node data,
+                    // The Node.location comes from the "loc" property of the flowNode data,
                     // converted by the Point.parse static method.
-                    // If the Node.location is changed, it updates the "loc" property of the node data,
+                    // If the Node.location is changed, it updates the "loc" property of the flowNode data,
                     // converting back using the Point.stringify static method.
                     new go.Binding("location", "loc", go.Point.parse).makeTwoWay(go.Point.stringify),
                     {
-                        // the Node.location is at the center of each node
+                        // the Node.location is at the center of each flowNode
                         locationSpot: go.Spot.Center
                     }
                 ];
@@ -59,13 +59,13 @@
 
             // Define a function for creating a "port" that is normally transparent.
             // The "name" is used as the GraphObject.portId,
-            // the "align" is used to determine where to position the port relative to the body of the node,
+            // the "align" is used to determine where to position the port relative to the body of the flowNode,
             // the "spot" is used to control how links connect with the port and whether the port
-            // stretches along the side of the node,
+            // stretches along the side of the flowNode,
             // and the boolean "output" and "input" arguments control whether the user can draw links from or to the port.
             function makePort(name, align, spot, output, input) {
                 var horizontal = align.equals(go.Spot.Top) || align.equals(go.Spot.Bottom);
-                // the port is basically just a transparent rectangle that stretches along the side of the node,
+                // the port is basically just a transparent rectangle that stretches along the side of the flowNode,
                 // and becomes colored when the mouse passes over it
                 return $(go.Shape,
                     {
@@ -247,7 +247,7 @@
                     )
                 );
 
-            // Make link labels visible if coming out of a "conditional" node.
+            // Make link labels visible if coming out of a "conditional" flowNode.
             // This listener is called by the "LinkDrawn" and "LinkRelinked" DiagramEvents.
             function showLinkLabel(e) {
                 var label = e.subject.findObject("LABEL");

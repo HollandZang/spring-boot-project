@@ -5,13 +5,14 @@
     <title>flowchart</title>
 </head>
 <body style="background-color: #2d313a">
-<script src="../js/go.js"></script>
+<script src="../../js/go.js"></script>
 <div id="allSampleContent" class="p-4 w-full">
     <script id="code">
         var data = ${data}
         var id = data.id ?? null
         var req_url_info = '${req_url_info}'
         var req_url_saveOrUpdate = '${req_url_saveOrUpdate}'
+        var flowNodes = ${flowNodes}
 
         function init() {
             document.getElementById("mySavedModel").value = JSON.stringify(data, null, 2);
@@ -260,6 +261,18 @@
 
             load();  // load an initial diagram from some JSON text
 
+            // specify the contents of the Palette
+            const nodes = [
+                {category: "Start", text: "开始"},
+                {category: "Step", text: "步骤"},
+                {category: "Conditional", text: "分支"},
+                {category: "End", text: "结束"},
+                {category: "Comment", text: "备注"}
+            ]
+            for (let flowNode of flowNodes) {
+                nodes.push({category: "Step", text: flowNode})
+            }
+
             // initialize the Palette that is on the left side of the page
             myPalette =
                 new go.Palette("myPaletteDiv",  // must name or refer to the DIV HTML element
@@ -269,13 +282,8 @@
                         "InitialAnimationStarting": animateFadeDown, // Instead, animate with this function
 
                         nodeTemplateMap: myDiagram.nodeTemplateMap,  // share the templates used by myDiagram
-                        model: new go.GraphLinksModel([  // specify the contents of the Palette
-                            {category: "Start", text: "开始"},
-                            {category: "Step", text: "步骤"},
-                            {category: "Conditional", text: "分支"},
-                            {category: "End", text: "结束"},
-                            {category: "Comment", text: "备注"}
-                        ])
+
+                        model: new go.GraphLinksModel(nodes)
                     });
 
             // This is a re-implementation of the default animation, except it fades in from downwards, instead of upwards.
@@ -350,6 +358,13 @@
         }
 
         window.addEventListener('DOMContentLoaded', init);
+
+        document.addEventListener('keydown', function (event) {
+            if ((event.ctrlKey || event.metaKey) && event.key === 's') {
+                event.preventDefault(); // 阻止默认行为
+                save();
+            }
+        });
     </script>
 
     <div style="width: 100%; display: flex; justify-content: space-between">

@@ -10,7 +10,7 @@ import com.holland.infrastructure.kit.web.R;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.annotation.Resource;
 import java.lang.reflect.InvocationTargetException;
@@ -21,13 +21,13 @@ import java.util.Map;
 import java.util.stream.Collectors;
 
 @RequestMapping("demo/pay")
-@RestController
 public class DemoPayController {
     @Resource
     private FlowchartRepository<String> flowchartRepository;
     @Resource
     private DemoPayService demoPayService;
 
+    @ResponseBody
     @PostMapping("buyGoods")
     public R<?> buyGoods(@RequestBody DemoPayReq demoPayReq) throws InvocationTargetException, IllegalAccessException {
         // todo 下面的代码都可以抽象为一个流程引擎

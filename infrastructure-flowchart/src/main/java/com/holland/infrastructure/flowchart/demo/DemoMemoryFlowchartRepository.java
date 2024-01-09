@@ -11,7 +11,7 @@ import java.util.UUID;
 /**
  * 基于内存的流程图存储实现
  */
-public class MemoryFlowchartRepository implements FlowchartRepository<String> {
+public class DemoMemoryFlowchartRepository implements FlowchartRepository<String> {
     private final HashMap<String, Flowchart<String>> memory = new HashMap<>();
 
     @Override

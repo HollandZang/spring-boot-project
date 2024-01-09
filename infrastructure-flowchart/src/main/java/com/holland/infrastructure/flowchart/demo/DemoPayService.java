@@ -8,14 +8,12 @@ import com.holland.infrastructure.flowchart.anno.FlowNode;
 import com.holland.infrastructure.flowchart.domain.Flowchart;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
 import java.util.Random;
 
 @Flow(name = "示例 - 支付流程")
 @Slf4j
-@Service
 public class DemoPayService {
     private final JSONObject 商品和活动 = JSONObject.parseObject("{\n" +
             "  \"苹果\": {\n" +
@@ -32,7 +30,7 @@ public class DemoPayService {
      * 注册 支付流程
      */
     @Autowired
-    public DemoPayService(MemoryFlowchartRepository flowchartRepository) {
+    public DemoPayService(DemoMemoryFlowchartRepository flowchartRepository) {
         flowchartRepository.saveOrUpdate(JSON.parseObject("{\n" +
                 "  \"id\": \"示例 - 支付流程\",\n" +
                 "  \"name\": null,\n" +

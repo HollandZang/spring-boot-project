@@ -19,3 +19,5 @@ holland:
           spec-keys:
             - key-name: status
               ttl: 120
+  flowchart:
+    open-demo: true

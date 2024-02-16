@@ -1,9 +1,8 @@
 package com.holland.infrastructure.flowchart.demo;
 
 import com.alibaba.fastjson2.JSON;
-import com.holland.infrastructure.flowchart.FlowchartConfig;
+import com.holland.infrastructure.flowchart.FlowchartEngine;
 import com.holland.infrastructure.flowchart.FlowchartRepository;
-import com.holland.infrastructure.flowchart.anno.FlowNode;
 import com.holland.infrastructure.flowchart.domain.Flowchart;
 import org.springframework.http.ResponseEntity;
 import org.springframework.ui.Model;
@@ -16,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 @RequestMapping("demo")
 public class DemoFlowchartController {
@@ -24,6 +24,8 @@ public class DemoFlowchartController {
 
     @Resource
     private FlowchartRepository<String> flowchartRepository;
+    @Resource
+    private FlowchartEngine flowchartEngine;
 
     @GetMapping(INFO)
     public String info(Model model, HttpServletRequest request, String id) {
@@ -36,7 +38,10 @@ public class DemoFlowchartController {
         final String base = url.substring(0, url.length() - INFO.length());
         model.addAttribute("req_url_info", url);
         model.addAttribute("req_url_saveOrUpdate", base + SAVE_OR_UPDATE);
-        final Set<String> flowNodes = FlowchartConfig.flowcharts.get(id);
+        final Set<String> flowNodes = flowchartEngine.getNodes(id)
+                .stream()
+                .map(node -> node.methodName)
+                .collect(Collectors.toSet());
         model.addAttribute("flowNodes", JSON.toJSONString(flowNodes));
 
         return "flowchart";

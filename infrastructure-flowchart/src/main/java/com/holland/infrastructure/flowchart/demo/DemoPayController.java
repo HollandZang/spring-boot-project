@@ -1,8 +1,8 @@
 package com.holland.infrastructure.flowchart.demo;
 
+import com.holland.infrastructure.flowchart.FlowchartEngine;
 import com.holland.infrastructure.flowchart.FlowchartRepository;
 import com.holland.infrastructure.flowchart.anno.Flow;
-import com.holland.infrastructure.flowchart.anno.FlowNode;
 import com.holland.infrastructure.flowchart.domain.Flowchart;
 import com.holland.infrastructure.flowchart.domain.LinkData;
 import com.holland.infrastructure.flowchart.domain.NodeData;
@@ -15,9 +15,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import javax.annotation.Resource;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 @RequestMapping("demo/pay")
@@ -26,20 +25,15 @@ public class DemoPayController {
     private FlowchartRepository<String> flowchartRepository;
     @Resource
     private DemoPayService demoPayService;
+    @Resource
+    private FlowchartEngine flowchartEngine;
+
+    private final String flowchartName = DemoPayService.class.getAnnotation(Flow.class).name();
 
     @ResponseBody
     @PostMapping("buyGoods")
     public R<?> buyGoods(@RequestBody DemoPayReq demoPayReq) throws InvocationTargetException, IllegalAccessException {
-        // todo 下面的代码都可以抽象为一个流程引擎
-        final Class<DemoPayService> demoPayServiceClass = DemoPayService.class;
-        final String flowchartName = demoPayServiceClass.getAnnotation(Flow.class).name();
-        final Map<String, Method> nameMethodMap = new HashMap<>();
-        for (Method method : demoPayServiceClass.getMethods()) {
-            final FlowNode flowNode = method.getAnnotation(FlowNode.class);
-            if (null != flowNode) {
-                nameMethodMap.put(flowNode.name(), method);
-            }
-        }
+        final Set<FlowchartEngine.Node> nodes = flowchartEngine.getNodes(flowchartName);
 
         final Flowchart<String> flowchart = flowchartRepository.info(flowchartName);
 
@@ -63,7 +57,8 @@ public class DemoPayController {
                 break;
 
             final String text = execNode.getText();
-            final Method method = nameMethodMap.get(text);
+            final Method method = nodes.stream().filter(node -> node.nodeAnno.name().equals(text)).findFirst().map(node -> node.method).get();
+            // todo 此处invoke尝试处理参数
             demoPayReq = (DemoPayReq) method.invoke(demoPayService, demoPayReq);
             currNode = execNode;
         }

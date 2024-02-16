@@ -4,7 +4,7 @@ import com.alibaba.fastjson2.JSON;
 import com.alibaba.fastjson2.JSONArray;
 import com.alibaba.fastjson2.JSONObject;
 import com.holland.infrastructure.flowchart.anno.Flow;
-import com.holland.infrastructure.flowchart.anno.FlowNode;
+import com.holland.infrastructure.flowchart.anno.Node;
 import com.holland.infrastructure.flowchart.domain.Flowchart;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -87,7 +87,7 @@ public class DemoPayService {
                 "}", Flowchart.class));
     }
 
-    @FlowNode(name = "示例 - 满减")
+    @Node(name = "示例 - 满减")
     public DemoPayReq 满减(DemoPayReq demoPayReq) {
         final String goodsId = demoPayReq.getGoodsId();
         final BigDecimal price = demoPayReq.getFinalPrice();
@@ -123,7 +123,7 @@ public class DemoPayService {
         return demoPayReq;
     }
 
-    @FlowNode(name = "示例 - 代金券")
+    @Node(name = "示例 - 代金券")
     public DemoPayReq 代金券(DemoPayReq demoPayReq) {
         final String goodsId = demoPayReq.getGoodsId();
         final BigDecimal price = demoPayReq.getFinalPrice();
@@ -138,7 +138,7 @@ public class DemoPayService {
         return demoPayReq;
     }
 
-    @FlowNode(name = "示例 - 打折")
+    @Node(name = "示例 - 打折")
     public DemoPayReq 打折(DemoPayReq demoPayReq) {
         final String goodsId = demoPayReq.getGoodsId();
         final BigDecimal price = demoPayReq.getFinalPrice();

@@ -12,6 +12,6 @@ import java.lang.annotation.*;
 @Constraint(validatedBy = IsJsonObjValidator.class)
 @Target({ElementType.METHOD})
 @Retention(RetentionPolicy.RUNTIME)
-public @interface FlowNode {
+public @interface Node {
     String name();
 }

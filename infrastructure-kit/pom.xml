@@ -41,4 +41,47 @@
         </dependency>
     </dependencies>
 
+    <profiles>
+        <profile>
+            <id>jdk8</id>
+            <activation>
+                <jdk>[1.8,11)</jdk>
+            </activation>
+            <dependencies>
+                <!-- JDK 1.8 使用老的 groovy 包-->
+                <dependency>
+                    <groupId>org.codehaus.groovy</groupId>
+                    <artifactId>groovy-all</artifactId>
+                    <type>pom</type>
+                </dependency>
+            </dependencies>
+        </profile>
+        <profile>
+            <id>jdk11</id>
+            <activation>
+                <jdk>[11,)</jdk>
+            </activation>
+            <dependencies>
+                <!-- JDK 11 使用新的 groovy 包-->
+                <dependency>
+                    <groupId>org.apache.groovy</groupId>
+                    <artifactId>groovy-all</artifactId>
+                    <type>pom</type>
+                </dependency>
+            </dependencies>
+        </profile>
+        <profile>
+            <id>jdk15</id>
+            <activation>
+                <jdk>[15,)</jdk>
+            </activation>
+            <dependencies>
+                <!-- NashornScriptEngine在 JDK 15 正式移除 -->
+                <dependency>
+                    <groupId>org.openjdk.nashorn</groupId>
+                    <artifactId>nashorn-core</artifactId>
+                </dependency>
+            </dependencies>
+        </profile>
+    </profiles>
 </project>

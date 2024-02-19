@@ -35,6 +35,9 @@
         <minio.version>8.5.7</minio.version>
         <okhttp.version>4.12.0</okhttp.version>
         <metadata-extractor.version>2.19.0</metadata-extractor.version>
+        <org.codehaus.groovy.version>3.0.20</org.codehaus.groovy.version>
+        <org.apache.groovy.version>5.0.0-alpha-5</org.apache.groovy.version>
+        <nashorn-core.version>15.4</nashorn-core.version>
     </properties>
 
     <dependencyManagement>
@@ -74,6 +77,23 @@
                 <groupId>com.drewnoakes</groupId>
                 <artifactId>metadata-extractor</artifactId>
                 <version>${metadata-extractor.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.codehaus.groovy</groupId>
+                <artifactId>groovy-all</artifactId>
+                <version>${org.codehaus.groovy.version}</version>
+                <type>pom</type>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.groovy</groupId>
+                <artifactId>groovy-all</artifactId>
+                <version>${org.apache.groovy.version}</version>
+                <type>pom</type>
+            </dependency>
+            <dependency>
+                <groupId>org.openjdk.nashorn</groupId>
+                <artifactId>nashorn-core</artifactId>
+                <version>${nashorn-core.version}</version>
             </dependency>
 
             <dependency>

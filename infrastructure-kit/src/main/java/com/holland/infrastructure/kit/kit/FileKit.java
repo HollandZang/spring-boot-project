@@ -6,6 +6,7 @@ import com.alibaba.fastjson2.JSON;
 import com.holland.infrastructure.kit.exception.BizException;
 
 import java.io.*;
+import java.nio.charset.StandardCharsets;
 
 public class FileKit {
     private FileKit() {
@@ -48,6 +49,14 @@ public class FileKit {
             file.mkdirs();
         }
         return file;
+    }
+
+    public static String read2Str(File file) throws BizException {
+        try (FileInputStream fileInputStream = new FileInputStream(file)) {
+            return IoUtil.read(fileInputStream, StandardCharsets.UTF_8);
+        } catch (IOException e) {
+            throw new BizException("读取文件失败：" + file.getAbsolutePath(), e);
+        }
     }
 
     public static <T> T read2Obj(File file, Class<T> tClass) throws BizException {

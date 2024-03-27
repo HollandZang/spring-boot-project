@@ -23,6 +23,7 @@
         <module>infrastructure-filesystem-disk</module>
         <module>infrastructure-kit</module>
         <module>infrastructure-flowchart</module>
+        <module>spring-boot-frame</module>
     </modules>
 
     <properties>
@@ -124,6 +125,11 @@
             <dependency>
                 <groupId>com.holland</groupId>
                 <artifactId>infrastructure-kit</artifactId>
+                <version>0.0.1</version>
+            </dependency>
+            <dependency>
+                <groupId>com.holland</groupId>
+                <artifactId>spring-boot-frame</artifactId>
                 <version>0.0.1</version>
             </dependency>
         </dependencies>

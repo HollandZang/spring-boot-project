@@ -1,4 +1,4 @@
-package com.holland.infrastructure.kit.kit.script;
+package com.holland.infrastructure.script;
 
 /**
  * 通用脚本方法

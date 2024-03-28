@@ -1,5 +1,7 @@
-package com.holland.infrastructure.kit.kit.script;
+package com.holland.infrastructure.script.groovy;
 
+import com.holland.infrastructure.script.AbstractScript;
+import com.holland.infrastructure.script.Script;
 import groovy.lang.GroovyClassLoader;
 import groovy.lang.GroovyObject;
 

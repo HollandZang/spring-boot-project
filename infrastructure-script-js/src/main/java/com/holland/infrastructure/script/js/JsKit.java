@@ -1,4 +1,7 @@
-package com.holland.infrastructure.kit.kit.script;
+package com.holland.infrastructure.script.js;
+
+import com.holland.infrastructure.script.AbstractScript;
+import com.holland.infrastructure.script.Script;
 
 import javax.script.*;
 

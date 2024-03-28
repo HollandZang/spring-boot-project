@@ -1,4 +1,4 @@
-package com.holland.infrastructure.kit.kit.script;
+package com.holland.infrastructure.script;
 
 import cn.hutool.crypto.digest.MD5;
 import lombok.extern.slf4j.Slf4j;

@@ -21,8 +21,11 @@
         <module>infrastructure-filesystem</module>
         <module>infrastructure-filesystem-minio</module>
         <module>infrastructure-filesystem-disk</module>
-        <module>infrastructure-kit</module>
         <module>infrastructure-flowchart</module>
+        <module>infrastructure-kit</module>
+        <module>infrastructure-script</module>
+        <module>infrastructure-script-groovy</module>
+        <module>infrastructure-script-js</module>
         <module>spring-boot-frame</module>
     </modules>
 
@@ -46,6 +49,11 @@
             <dependency>
                 <groupId>cn.hutool</groupId>
                 <artifactId>hutool-all</artifactId>
+                <version>${cn.hutool.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>cn.hutool</groupId>
+                <artifactId>hutool-crypto</artifactId>
                 <version>${cn.hutool.version}</version>
             </dependency>
             <dependency>
@@ -125,6 +133,21 @@
             <dependency>
                 <groupId>com.holland</groupId>
                 <artifactId>infrastructure-kit</artifactId>
+                <version>0.0.1</version>
+            </dependency>
+            <dependency>
+                <groupId>com.holland</groupId>
+                <artifactId>infrastructure-script</artifactId>
+                <version>0.0.1</version>
+            </dependency>
+            <dependency>
+                <groupId>com.holland</groupId>
+                <artifactId>infrastructure-script-groovy</artifactId>
+                <version>0.0.1</version>
+            </dependency>
+            <dependency>
+                <groupId>com.holland</groupId>
+                <artifactId>infrastructure-script-js</artifactId>
                 <version>0.0.1</version>
             </dependency>
             <dependency>

@@ -1,4 +1,4 @@
-package com.holland.infrastructure.kit.conf;
+package com.holland.spring.boot.frame.config;
 
 import org.hibernate.validator.HibernateValidator;
 import org.springframework.context.annotation.Bean;
